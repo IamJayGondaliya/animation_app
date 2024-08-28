@@ -31,11 +31,11 @@ class HomePage extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Draggable(
+                LongPressDraggable(
                   data: 'box',
                   feedback: Container(
-                    height: 200,
-                    width: 200,
+                    height: 220,
+                    width: 220,
                     color: Colors.red,
                   ),
                   childWhenDragging: Container(
