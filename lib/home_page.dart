@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-import 'package:animation_app/drag_controller.dart';
+import 'package:animation_app/animation_examples/drag_drop_animation/drag_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -14,84 +14,31 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    DragController mutable = Provider.of<DragController>(context);
-    DragController immutable = Provider.of<DragController>(
-      context,
-      listen: false,
-    );
-
     return Scaffold(
       appBar: AppBar(
         title: const Text("Home Page"),
       ),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                LongPressDraggable(
-                  data: 'box',
-                  feedback: Container(
-                    height: 220,
-                    width: 220,
-                    color: Colors.red,
-                  ),
-                  childWhenDragging: Container(
-                    height: 200,
-                    width: 200,
-                    color: Colors.grey,
-                  ),
-                  child: Container(
-                    height: 200,
-                    width: 200,
-                    color: mutable.boxAccepted ? Colors.grey : Colors.red,
-                  ),
-                ),
-                Draggable(
-                  data: 'circle',
-                  feedback: Container(
-                    height: 200,
-                    width: 200,
-                    decoration: const BoxDecoration(
-                      color: Colors.red,
-                      shape: BoxShape.circle,
-                    ),
-                  ),
-                  childWhenDragging: Container(
-                    height: 200,
-                    width: 200,
-                    decoration: const BoxDecoration(
-                      color: Colors.grey,
-                      shape: BoxShape.circle,
-                    ),
-                  ),
-                  child: Container(
-                    height: 200,
-                    width: 200,
-                    decoration: const BoxDecoration(
-                      color: Colors.red,
-                      shape: BoxShape.circle,
-                    ),
-                  ),
-                ),
-              ],
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(
+                  context,
+                  'drag_drop',
+                );
+              },
+              child: const Text("Drag & Drop Animation"),
             ),
-            DragTarget(
-              onAcceptWithDetails: (details) {
-                mutable.boxAccept();
-                log("Can accept...");
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(
+                  context,
+                  'hero_animation',
+                );
               },
-              onWillAcceptWithDetails: (details) {
-                log("DATA: ${details.data}");
-                return details.data == 'box';
-              },
-              builder: (context, _, __) => Container(
-                height: 200,
-                width: 200,
-                color: mutable.boxAccepted ? Colors.red : Colors.grey,
-              ),
+              child: const Text("Hero Animation"),
             ),
           ],
         ),
