@@ -40,6 +40,15 @@ class HomePage extends StatelessWidget {
               },
               child: const Text("Hero Animation"),
             ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(
+                  context,
+                  'implicit_animations',
+                );
+              },
+              child: const Text("Implicit Animation"),
+            ),
           ],
         ),
       ),
